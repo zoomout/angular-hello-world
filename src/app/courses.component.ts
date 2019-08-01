@@ -29,6 +29,7 @@ import {CoursesService} from './courses.service';
     <input #someVar (keyup.enter)="onKeyUp(someVar.value)"/>
     <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp2()"/>
     <input [(ngModel)]="email" (keyup.enter)="onKeyUp2()"/>
+    <div>{{ textToPipe | summary: 10 }}</div>
   `
 })
 export class CoursesComponent {
@@ -37,6 +38,7 @@ export class CoursesComponent {
   isActive = false;
   courses;
   email = 'test@test.com';
+  textToPipe = 'long text here long text here long text here long text here long text here';
   constructor(service: CoursesService) {
     this.courses = service.getCourses();
   }
