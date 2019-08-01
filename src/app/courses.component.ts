@@ -26,8 +26,9 @@ import {CoursesService} from './courses.service';
               [style.backgroundColor]="isActive ? 'blue' : 'black'">Save
       </button>
     </div>
-    <input #email (keyup.enter)="onKeyUp(email.value)"/>
-    <input [value]="email2" (keyup.enter)="onKeyUp2()"/>
+    <input #someVar (keyup.enter)="onKeyUp(someVar.value)"/>
+    <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUp2()"/>
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUp2()"/>
   `
 })
 export class CoursesComponent {
@@ -35,7 +36,7 @@ export class CoursesComponent {
   // imageUrl = 'https://buddy.works/blog/thumbnails/angular-cli-cover.png';
   isActive = false;
   courses;
-  email2 = 'test@test.com';
+  email = 'test@test.com';
   constructor(service: CoursesService) {
     this.courses = service.getCourses();
   }
@@ -54,6 +55,6 @@ export class CoursesComponent {
   }
 
   onKeyUp2() {
-    console.log(this.email2);
+    console.log(this.email);
   }
 }
